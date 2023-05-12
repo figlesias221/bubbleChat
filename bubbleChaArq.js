@@ -1,6 +1,6 @@
 const SIZE = 60; // size of the chat button in pixels
 const BTN_RAD = SIZE / 2; // radius of the chat button in pixels
-const BG_CHAT = "#49CACD"; // background color of the chat button
+const BG_CHAT = "#DD763B"; // background color of the chat button
 const chatButtonLogo = `<svg fill="#FFFFFF" stroke-width="10" height="700px" width="700px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 viewBox="-80 -120 700 700" >
 <g>
@@ -105,7 +105,7 @@ adjustForSmallScreens();
 
 function init() {
   chat.innerHTML = `<iframe
-    src="https://wisello.vercel.app/wisello"
+    src="https://wisello.vercel.app/arquitectura"
     width="100%"
     height="100%"
     frameborder="0"
