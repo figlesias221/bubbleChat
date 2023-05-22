@@ -82,14 +82,19 @@ function adjustForSmallScreens() {
 
   if (window.innerWidth < smallScreenWidth) {
     chat.style.position = "fixed";
-    chat.style.bottom = "0";
-    chat.style.left = "unset";
-    chat.style.width = "100%";
-    chat.style.height = "100%";
-    chat.style.borderRadius = "0";
-    chat.style.boxShadow = "none";
+    chat.style.top = "50%";
+    chat.style.left = "50%";
+    chat.style.transform = "translate(-50%, -50%)";
+    chat.style.width = "80vw";
+    chat.style.height = "80vh";
+    chat.style.borderRadius = "10px";
+    chat.style.boxShadow =
+      "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
     chat.style.overflowX = "hidden";
     chat.style.right = ""; // Reset the right property
+
+    chatButton.style.right = "20px";
+    chatButton.style.bottom = "20px";
   } else {
     chat.style.position = "fixed";
     chat.style.flexDirection = "column";
@@ -102,6 +107,9 @@ function adjustForSmallScreens() {
       "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
     chat.style.overflowX = "hidden";
     chat.style.right = "20px"; // Set the right property to ensure chat opens on the right
+
+    chatButton.style.right = "20px";
+    chatButton.style.bottom = "20px";
   }
 }
 
@@ -131,21 +139,38 @@ function init() {
     height="100%"
     frameborder="0"
     style="overflow-x: hidden;"
-    ></iframe>`;
+  ></iframe>`;
 
   document.body.appendChild(chat);
   const getColor = async () => {
-    chatButton.style.right = "20px";
-    chatButton.style.left = "unset";
-    chat.style.right = "20px";
-    chat.style.left = "unset";
+    chat.style.position = "fixed";
+    chat.style.top = "50%";
+    chat.style.left = "50%";
+    chat.style.transform = "translate(-50%, -50%)";
+    chat.style.width = "70vw";
+    chat.style.height = "70vh";
+    chat.style.boxShadow =
+      "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
+    chat.style.display = "none";
+    chat.style.borderRadius = "10px";
+    chat.style.zIndex = 999999999;
     chat.style.overflowX = "hidden";
 
+    chatButton.style.position = "fixed";
+    chatButton.style.bottom = "20px";
+    chatButton.style.right = "20px";
+    chatButton.style.zIndex = 999999999;
+    chatButton.style.transition = "all .2s ease-in-out";
+    chatButton.style.transform = "scale(1)";
+    chatButton.style.transformOrigin = "center";
+
     document.body.appendChild(chatButton);
+    document.body.appendChild(overlay);
   };
 
   getColor();
 }
+
 if (document.readyState === "complete") {
   init();
 } else {
