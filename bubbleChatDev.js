@@ -1,8 +1,8 @@
 const SIZE = 60; // size of the chat button in pixels
 const BTN_RAD = SIZE / 2; // radius of the chat button in pixels
 const BG_CHAT = "#49CACD"; // background color of the chat button
-const chatButtonLogo = `<svg fill="#FFFFFF" stroke-width="10" height="700px" width="700px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 viewBox="-80 -120 700 700" >
+const chatButtonLogo = `<svg fill="#FFFFFF" stroke-width="10" height="60px" width="700px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="-80 -120 60 700" >
 <g>
 	<g>
 		<g>
@@ -98,7 +98,7 @@ chat.style.boxShadow =
 chat.style.display = "none";
 chat.style.borderRadius = "10px";
 chat.style.zIndex = 999999999;
-chat.style.overflow = "hidden";
+chat.style.overflowX = "hidden";
 window.addEventListener("resize", adjustForSmallScreens);
 
 adjustForSmallScreens();
