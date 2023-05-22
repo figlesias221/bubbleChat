@@ -78,9 +78,27 @@ chatButton.addEventListener("click", () => {
 });
 
 function adjustForSmallScreens() {
-  const smallScreenHeight = 600;
-  if (window.innerHeight < smallScreenHeight) {
+  const smallScreenWidth = 550; // Adjust this value as needed
+
+  if (window.innerWidth < smallScreenWidth) {
+    chat.style.position = "fixed";
+    chat.style.bottom = "0";
+    chat.style.left = "0";
+    chat.style.width = "100%";
+    chat.style.height = "100%";
+    chat.style.borderRadius = "0";
+    chat.style.boxShadow = "none";
+  } else {
+    // Reset the styles for larger screens
+    chat.style.position = "fixed";
+    chat.style.flexDirection = "column";
+    chat.style.justifyContent = "space-between";
+    chat.style.bottom = "80px";
+    chat.style.width = "75vw";
     chat.style.height = "70vh";
+    chat.style.borderRadius = "10px";
+    chat.style.boxShadow =
+      "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
   }
 }
 
@@ -91,7 +109,7 @@ chat.style.position = "fixed";
 chat.style.flexDirection = "column";
 chat.style.justifyContent = "space-between";
 chat.style.bottom = "80px";
-chat.style.width = "75vw";
+chat.style.width = "70vw";
 chat.style.height = "70vh";
 chat.style.boxShadow =
   "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
@@ -109,6 +127,7 @@ function init() {
     width="100%"
     height="100%"
     frameborder="0"
+    style="overflow-x: hidden;"
     ></iframe>`;
 
   document.body.appendChild(chat);
@@ -117,6 +136,7 @@ function init() {
     chatButton.style.left = "unset";
     chat.style.right = "20px";
     chat.style.left = "unset";
+    chat.style.overflowX = "hidden";
 
     document.body.appendChild(chatButton);
   };
