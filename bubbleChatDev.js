@@ -83,13 +83,14 @@ function adjustForSmallScreens() {
   if (window.innerWidth < smallScreenWidth) {
     chat.style.position = "fixed";
     chat.style.bottom = "0";
-    chat.style.left = "0";
+    chat.style.left = "unset";
     chat.style.width = "100%";
     chat.style.height = "100%";
     chat.style.borderRadius = "0";
     chat.style.boxShadow = "none";
+    chat.style.overflowX = "hidden";
+    chat.style.right = ""; // Reset the right property
   } else {
-    // Reset the styles for larger screens
     chat.style.position = "fixed";
     chat.style.flexDirection = "column";
     chat.style.justifyContent = "space-between";
@@ -99,6 +100,8 @@ function adjustForSmallScreens() {
     chat.style.borderRadius = "10px";
     chat.style.boxShadow =
       "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
+    chat.style.overflowX = "hidden";
+    chat.style.right = "20px"; // Set the right property to ensure chat opens on the right
   }
 }
 
