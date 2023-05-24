@@ -105,9 +105,9 @@ function adjustForSmallScreens() {
     chat.style.flexDirection = "column";
     chat.style.justifyContent = "space-between";
     chat.style.bottom = "0px";
-    chat.style.width = "65vw";
-    chat.style.height = "55vh";
-    chat.style.top = "30%";
+    chat.style.width = "60vw";
+    chat.style.height = "70vh";
+    chat.style.top = "45%";
     chat.style.right = "20px";
     chat.style.borderRadius = "10px";
     chatButton.style.bottom = "20px";
@@ -138,11 +138,11 @@ function init() {
     chatButton.style.right = "20px";
     chatButton.style.left = "unset";
     chat.style.position = "fixed";
-    chat.style.top = "30%";
+    chat.style.top = "45%";
     chat.style.left = "50%";
     chat.style.transform = "translate(-50%, -50%)";
-    chat.style.width = "65vw";
-    chat.style.height = "55vh";
+    chat.style.width = "60vw";
+    chat.style.height = "70vh";
     chat.style.boxShadow =
       "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
     chat.style.display = "none";
