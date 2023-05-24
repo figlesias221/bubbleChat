@@ -90,7 +90,6 @@ overlay.style.display = "none";
 // Responsive
 function adjustForSmallScreens() {
   const smallScreenWidth = 550;
-  console.log(window.innerWidth);
 
   if (window.innerWidth < smallScreenWidth) {
     chat.style.position = "fixed";
@@ -107,7 +106,7 @@ function adjustForSmallScreens() {
     chat.style.justifyContent = "space-between";
     chat.style.bottom = "0px";
     chat.style.width = "65vw";
-    chat.style.height = "45vh";
+    chat.style.height = "55vh";
     chat.style.top = "30%";
     chat.style.right = "20px";
     chat.style.borderRadius = "10px";
@@ -132,6 +131,7 @@ function init() {
     width="100%"
     height="100%"
     frameborder="0"
+    style="border-radius: 10px;"
   ></iframe>`;
 
   const getColor = async () => {
@@ -142,12 +142,12 @@ function init() {
     chat.style.left = "50%";
     chat.style.transform = "translate(-50%, -50%)";
     chat.style.width = "65vw";
-    chat.style.height = "45vh";
+    chat.style.height = "55vh";
     chat.style.boxShadow =
       "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
     chat.style.display = "none";
-    chat.style.borderRadius = "10px";
     chat.style.zIndex = 999999999;
+    chat.style.borderRadius = "10px";
 
     document.body.appendChild(chatButton);
     document.body.appendChild(overlay);
@@ -163,16 +163,3 @@ if (document.readyState === "complete") {
 } else {
   window.addEventListener("load", init);
 }
-
-// Media Query
-// const mediaQuery = window.matchMedia("(min-width: 550px)");
-
-// function handleSizeChange(e) {
-//   if (e.matches) {
-//     chat.style.height = "600px";
-//     chat.style.width = "450px";
-//   }
-// }
-
-// mediaQuery.addEventListener("change", handleSizeChange);
-// handleSizeChange(mediaQuery);
