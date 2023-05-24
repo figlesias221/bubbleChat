@@ -28,9 +28,10 @@ const chatButtonClose = `
   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
 </svg>
 `;
-// creat the chat button element
+
+//Chat Button
 const chatButton = document.createElement("div");
-// apply styles to the chat button
+
 chatButton.setAttribute("id", "chat-bubble-button");
 chatButton.style.position = "fixed";
 chatButton.style.bottom = "20px";
@@ -50,24 +51,18 @@ chatButton.addEventListener("mouseleave", (event) => {
   chatButton.style.transform = "scale(1)";
 });
 
-// create the chat button icon element
+//Chat Button Icon
 const chatButtonIcon = document.createElement("div");
-
-// apply styles to the chat button icon
 chatButtonIcon.style.display = "flex";
 chatButtonIcon.style.alignItems = "center";
 chatButtonIcon.style.justifyContent = "center";
 chatButtonIcon.style.width = "100%";
 chatButtonIcon.style.height = "100%";
 chatButtonIcon.style.zIndex = 999999999;
-
-// add the chat button icon to the chat button element
 chatButtonIcon.innerHTML = chatButtonLogo;
-
 chatButton.appendChild(chatButtonIcon);
 
 chatButton.addEventListener("click", () => {
-  // Toggle the chat component
   if (chat.style.display === "none") {
     chat.style.display = "flex";
     chatButtonIcon.innerHTML = chatButtonClose;
@@ -77,10 +72,25 @@ chatButton.addEventListener("click", () => {
     chatButtonIcon.innerHTML = chatButtonLogo;
     overlay.style.display = "none"; // Hide the overlay
   }
+  // adjustForSmallScreens();
 });
 
+// Blur
+const overlay = document.createElement("div");
+overlay.style.position = "fixed";
+overlay.style.top = "0";
+overlay.style.left = "0";
+overlay.style.width = "100%";
+overlay.style.height = "100%";
+overlay.style.backgroundColor = "rgba(0, 0, 0, 0.3)"; // Adjust the opacity as desired
+overlay.style.backdropFilter = "blur(1px)"; // Apply the blur effect
+overlay.style.zIndex = "999999998"; // Ensure the overlay is below the chat window
+overlay.style.display = "none";
+
+// Responsive
 function adjustForSmallScreens() {
-  const smallScreenWidth = 550; // Adjust this value as needed
+  const smallScreenWidth = 550;
+  console.log(window.innerWidth);
 
   if (window.innerWidth < smallScreenWidth) {
     chat.style.position = "fixed";
@@ -89,14 +99,8 @@ function adjustForSmallScreens() {
     chat.style.transform = "translate(-50%, -50%)";
     chat.style.width = "90vw";
     chat.style.height = "87vh";
+    chat.style.right = "";
     chat.style.borderRadius = "10px";
-    chat.style.boxShadow =
-      "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
-    chat.style.overflowX = "hidden";
-    chat.style.right = ""; // Reset the right property
-
-    chatButton.style.right = "20px";
-    chatButton.style.bottom = "20px";
   } else {
     chat.style.position = "fixed";
     chat.style.flexDirection = "column";
@@ -105,42 +109,19 @@ function adjustForSmallScreens() {
     chat.style.width = "65vw";
     chat.style.height = "45vh";
     chat.style.top = "30%";
+    chat.style.right = "20px";
     chat.style.borderRadius = "10px";
-    chat.style.boxShadow =
-      "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
-    chat.style.overflowX = "hidden";
-    chat.style.right = "20px"; // Set the right property to ensure chat opens on the right
-
-    chatButton.style.right = "20px";
     chatButton.style.bottom = "20px";
-  }
-
-  // Apply background blur effect behind the chat window
-  const body = document.querySelector("body");
-  if (chat.style.display !== "none") {
-    body.style.backdropFilter = "blur(8px)"; // Apply the background blur effect
-  } else {
-    body.style.backdropFilter = "none"; // Remove the background blur effect
   }
 }
 
+//Initailize Chat
 const chat = document.createElement("div");
 chat.setAttribute("id", "chat-bubble-window");
-
-chat.style.position = "fixed";
-chat.style.flexDirection = "column";
-chat.style.justifyContent = "space-between";
-chat.style.bottom = "0px";
-chat.style.width = "65vw";
-chat.style.height = "45vh";
-chat.style.top = "30%";
-chat.style.boxShadow =
-  "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
 chat.style.display = "none";
-chat.style.borderRadius = "10px";
 chat.style.zIndex = 999999999;
-chat.style.overflowX = "hidden";
-chat.style.overflow = "hidden";
+chat.style.borderRadius = "10px";
+
 window.addEventListener("resize", adjustForSmallScreens);
 
 adjustForSmallScreens();
@@ -153,8 +134,9 @@ function init() {
     frameborder="0"
   ></iframe>`;
 
-  document.body.appendChild(chat);
   const getColor = async () => {
+    chatButton.style.right = "20px";
+    chatButton.style.left = "unset";
     chat.style.position = "fixed";
     chat.style.top = "30%";
     chat.style.left = "50%";
@@ -166,17 +148,10 @@ function init() {
     chat.style.display = "none";
     chat.style.borderRadius = "10px";
     chat.style.zIndex = 999999999;
-    chat.style.overflowX = "hidden";
-    chatButton.style.position = "fixed";
-    chatButton.style.bottom = "20px";
-    chatButton.style.right = "20px";
-    chatButton.style.zIndex = 999999999;
-    chatButton.style.transition = "all .2s ease-in-out";
-    chatButton.style.transform = "scale(1)";
-    chatButton.style.transformOrigin = "center";
 
     document.body.appendChild(chatButton);
     document.body.appendChild(overlay);
+    document.body.appendChild(chat);
   };
 
   getColor();
@@ -188,30 +163,15 @@ if (document.readyState === "complete") {
   window.addEventListener("load", init);
 }
 
-// Create a condition that targets viewports at least 768px wide
+// Media Query
 const mediaQuery = window.matchMedia("(min-width: 550px)");
 
 function handleSizeChange(e) {
-  // Check if the media query is true
   if (e.matches) {
     chat.style.height = "600px";
     chat.style.width = "450px";
   }
 }
 
-const overlay = document.createElement("div");
-overlay.style.position = "fixed";
-overlay.style.top = "0";
-overlay.style.left = "0";
-overlay.style.width = "100%";
-overlay.style.height = "100%";
-overlay.style.backgroundColor = "rgba(0, 0, 0, 0.1)"; // Adjust the opacity as desired
-overlay.style.backdropFilter = "blur(1px)"; // Apply the blur effect
-overlay.style.zIndex = "999999998"; // Ensure the overlay is below the chat window
-overlay.style.display = "none";
-
-// Register event listener
 mediaQuery.addEventListener("change", handleSizeChange);
-
-// Initial check
 handleSizeChange(mediaQuery);
