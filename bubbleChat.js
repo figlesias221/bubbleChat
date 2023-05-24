@@ -155,6 +155,7 @@ function init() {
   };
 
   getColor();
+  adjustForSmallScreens();
 }
 
 if (document.readyState === "complete") {
@@ -164,14 +165,14 @@ if (document.readyState === "complete") {
 }
 
 // Media Query
-const mediaQuery = window.matchMedia("(min-width: 550px)");
+// const mediaQuery = window.matchMedia("(min-width: 550px)");
 
-function handleSizeChange(e) {
-  if (e.matches) {
-    chat.style.height = "600px";
-    chat.style.width = "450px";
-  }
-}
+// function handleSizeChange(e) {
+//   if (e.matches) {
+//     chat.style.height = "600px";
+//     chat.style.width = "450px";
+//   }
+// }
 
-mediaQuery.addEventListener("change", handleSizeChange);
-handleSizeChange(mediaQuery);
+// mediaQuery.addEventListener("change", handleSizeChange);
+// handleSizeChange(mediaQuery);
