@@ -71,9 +71,11 @@ chatButton.addEventListener("click", () => {
   if (chat.style.display === "none") {
     chat.style.display = "flex";
     chatButtonIcon.innerHTML = chatButtonClose;
+    overlay.style.display = "block"; // Show the overlay
   } else {
     chat.style.display = "none";
     chatButtonIcon.innerHTML = chatButtonLogo;
+    overlay.style.display = "none"; // Hide the overlay
   }
 });
 
@@ -82,26 +84,43 @@ function adjustForSmallScreens() {
 
   if (window.innerWidth < smallScreenWidth) {
     chat.style.position = "fixed";
-    chat.style.bottom = "0";
-    chat.style.left = "unset";
-    chat.style.width = "100%";
-    chat.style.height = "100%";
-    chat.style.borderRadius = "0";
-    chat.style.boxShadow = "none";
+    chat.style.top = "45%";
+    chat.style.left = "50%";
+    chat.style.transform = "translate(-50%, -50%)";
+    chat.style.width = "90vw";
+    chat.style.height = "87vh";
+    chat.style.borderRadius = "10px";
+    chat.style.boxShadow =
+      "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
     chat.style.overflowX = "hidden";
     chat.style.right = ""; // Reset the right property
+
+    chatButton.style.right = "20px";
+    chatButton.style.bottom = "20px";
   } else {
     chat.style.position = "fixed";
     chat.style.flexDirection = "column";
     chat.style.justifyContent = "space-between";
-    chat.style.bottom = "80px";
-    chat.style.width = "75vw";
-    chat.style.height = "70vh";
+    chat.style.bottom = "0px";
+    chat.style.width = "65vw";
+    chat.style.height = "45vh";
+    chat.style.top = "30%";
     chat.style.borderRadius = "10px";
     chat.style.boxShadow =
       "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
     chat.style.overflowX = "hidden";
     chat.style.right = "20px"; // Set the right property to ensure chat opens on the right
+
+    chatButton.style.right = "20px";
+    chatButton.style.bottom = "20px";
+  }
+
+  // Apply background blur effect behind the chat window
+  const body = document.querySelector("body");
+  if (chat.style.display !== "none") {
+    body.style.backdropFilter = "blur(8px)"; // Apply the background blur effect
+  } else {
+    body.style.backdropFilter = "none"; // Remove the background blur effect
   }
 }
 
@@ -111,41 +130,58 @@ chat.setAttribute("id", "chat-bubble-window");
 chat.style.position = "fixed";
 chat.style.flexDirection = "column";
 chat.style.justifyContent = "space-between";
-chat.style.bottom = "80px";
-chat.style.width = "70vw";
-chat.style.height = "70vh";
+chat.style.bottom = "0px";
+chat.style.width = "65vw";
+chat.style.height = "45vh";
+chat.style.top = "30%";
 chat.style.boxShadow =
   "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
 chat.style.display = "none";
 chat.style.borderRadius = "10px";
 chat.style.zIndex = 999999999;
 chat.style.overflowX = "hidden";
+chat.style.overflow = "hidden";
 window.addEventListener("resize", adjustForSmallScreens);
 
 adjustForSmallScreens();
 
 function init() {
   chat.innerHTML = `<iframe
-    src="http://localhost:3000/wisello"
+    src="https://wisello.vercel.app/wisello"
     width="100%"
     height="100%"
     frameborder="0"
-    style="overflow-x: hidden;"
-    ></iframe>`;
+  ></iframe>`;
 
   document.body.appendChild(chat);
   const getColor = async () => {
-    chatButton.style.right = "20px";
-    chatButton.style.left = "unset";
-    chat.style.right = "20px";
-    chat.style.left = "unset";
+    chat.style.position = "fixed";
+    chat.style.top = "30%";
+    chat.style.left = "50%";
+    chat.style.transform = "translate(-50%, -50%)";
+    chat.style.width = "65vw";
+    chat.style.height = "45vh";
+    chat.style.boxShadow =
+      "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
+    chat.style.display = "none";
+    chat.style.borderRadius = "10px";
+    chat.style.zIndex = 999999999;
     chat.style.overflowX = "hidden";
+    chatButton.style.position = "fixed";
+    chatButton.style.bottom = "20px";
+    chatButton.style.right = "20px";
+    chatButton.style.zIndex = 999999999;
+    chatButton.style.transition = "all .2s ease-in-out";
+    chatButton.style.transform = "scale(1)";
+    chatButton.style.transformOrigin = "center";
 
     document.body.appendChild(chatButton);
+    document.body.appendChild(overlay);
   };
 
   getColor();
 }
+
 if (document.readyState === "complete") {
   init();
 } else {
@@ -162,6 +198,17 @@ function handleSizeChange(e) {
     chat.style.width = "450px";
   }
 }
+
+const overlay = document.createElement("div");
+overlay.style.position = "fixed";
+overlay.style.top = "0";
+overlay.style.left = "0";
+overlay.style.width = "100%";
+overlay.style.height = "100%";
+overlay.style.backgroundColor = "rgba(0, 0, 0, 0.1)"; // Adjust the opacity as desired
+overlay.style.backdropFilter = "blur(1px)"; // Apply the blur effect
+overlay.style.zIndex = "999999998"; // Ensure the overlay is below the chat window
+overlay.style.display = "none";
 
 // Register event listener
 mediaQuery.addEventListener("change", handleSizeChange);
