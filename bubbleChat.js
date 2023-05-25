@@ -125,9 +125,14 @@ window.addEventListener("resize", adjustForSmallScreens);
 
 adjustForSmallScreens();
 
+const scriptTag = document.currentScript;
+console.log(scriptTag);
+let botID = scriptTag.id;
+console.log("botID: ", botID);
+
 function init() {
   chat.innerHTML = `<iframe
-    src="https://wisello.vercel.app/wisello"
+    src="https://wisello.vercel.app/${scriptTag.id}"
     width="100%"
     height="100%"
     frameborder="0"
