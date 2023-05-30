@@ -93,24 +93,22 @@ function adjustForSmallScreens() {
 
   if (window.innerWidth < smallScreenWidth) {
     chat.style.position = "fixed";
+    chat.style.top = "0";
+    chat.style.left = "0";
+    chat.style.transform = "none";
+    chat.style.width = "100%";
+    chat.style.height = "100%";
+    chat.style.right = "unset";
+    chat.style.borderRadius = "5px";
+  } else {
+    chat.style.position = "fixed";
     chat.style.top = "45%";
     chat.style.left = "50%";
     chat.style.transform = "translate(-50%, -50%)";
-    chat.style.width = "90vw";
-    chat.style.height = "87vh";
-    chat.style.right = "";
-    chat.style.borderRadius = "10px";
-  } else {
-    chat.style.position = "fixed";
-    chat.style.flexDirection = "column";
-    chat.style.justifyContent = "space-between";
-    chat.style.bottom = "0px";
     chat.style.width = "60vw";
     chat.style.height = "70vh";
-    chat.style.top = "45%";
-    chat.style.right = "20px";
-    chat.style.borderRadius = "10px";
-    chatButton.style.bottom = "20px";
+    chat.style.boxShadow =
+      "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
   }
 }
 
@@ -119,16 +117,29 @@ const chat = document.createElement("div");
 chat.setAttribute("id", "chat-bubble-window");
 chat.style.display = "none";
 chat.style.zIndex = 999999999;
-chat.style.borderRadius = "10px";
+chat.style.borderRadius = "5px";
+
+const chatCloseButton = document.createElement("div");
+chatCloseButton.style.position = "absolute";
+chatCloseButton.style.top = "10px";
+chatCloseButton.style.right = "10px";
+chatCloseButton.style.width = "24px";
+chatCloseButton.style.height = "24px";
+chatCloseButton.style.cursor = "pointer";
+chatCloseButton.innerHTML = chatButtonClose;
+chatCloseButton.addEventListener("click", () => {
+  chat.style.display = "none";
+  chatButton.style.display = "flex";
+  overlay.style.display = "none";
+});
+chat.appendChild(chatCloseButton);
 
 window.addEventListener("resize", adjustForSmallScreens);
 
 adjustForSmallScreens();
 
 const scriptTag = document.currentScript;
-console.log(scriptTag);
 let botID = scriptTag.id;
-console.log("botID: ", botID);
 
 function init() {
   chat.innerHTML = `<iframe
@@ -136,7 +147,7 @@ function init() {
     width="100%"
     height="100%"
     frameborder="0"
-    style="border-radius: 10px;"
+    style="border-radius: 5px;"
   ></iframe>`;
 
   const getColor = async () => {
@@ -152,11 +163,12 @@ function init() {
       "rgba(150, 150, 150, 0.15) 0px 6px 24px 0px, rgba(150, 150, 150, 0.15) 0px 0px 0px 1px";
     chat.style.display = "none";
     chat.style.zIndex = 999999999;
-    chat.style.borderRadius = "10px";
+    chat.style.borderRadius = "5px";
 
     document.body.appendChild(chatButton);
     document.body.appendChild(overlay);
     document.body.appendChild(chat);
+    chat.appendChild(chatCloseButton);
   };
 
   getColor();
