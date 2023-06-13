@@ -24,7 +24,7 @@ const chatButtonLogo = `<svg fill="#FFFFFF" stroke-width="10" height="60px" widt
 </svg>`;
 
 const chatButtonClose = `
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#FFFFFF" width="24" height="24">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#A9A9A9" width="24" height="24">
   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
 </svg>
 `;
@@ -49,6 +49,18 @@ chatButton.addEventListener("mouseenter", (event) => {
 });
 chatButton.addEventListener("mouseleave", (event) => {
   chatButton.style.transform = "scale(1)";
+});
+
+chatButton.addEventListener("click", () => {
+  if (chat.style.display === "none") {
+    chat.style.display = "flex";
+    chatButtonIcon.innerHTML = chatButtonClose;
+    overlay.style.display = "block";
+  } else {
+    chat.style.display = "none";
+    chatButtonIcon.innerHTML = chatButtonLogo;
+    overlay.style.display = "none";
+  }
 });
 
 //Chat Button Icon
@@ -86,6 +98,13 @@ overlay.style.backgroundColor = "rgba(0, 0, 0, 0.3)"; // Adjust the opacity as d
 overlay.style.backdropFilter = "blur(1px)"; // Apply the blur effect
 overlay.style.zIndex = "999999998"; // Ensure the overlay is below the chat window
 overlay.style.display = "none";
+
+overlay.addEventListener("click", () => {
+  chat.style.display = "none";
+  chatButtonIcon.innerHTML = chatButtonLogo;
+  overlay.style.display = "none";
+});
+
 
 // Responsive
 function adjustForSmallScreens() {
