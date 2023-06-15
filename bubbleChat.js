@@ -29,6 +29,12 @@ const chatButtonClose = `
 </svg>
 `;
 
+const chatButtonCloseIcon = `
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#FFFFFF" width="24" height="24">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+</svg>
+`;
+
 //Chat Button
 const chatButton = document.createElement("div");
 
@@ -54,7 +60,7 @@ chatButton.addEventListener("mouseleave", (event) => {
 chatButton.addEventListener("click", () => {
   if (chat.style.display === "none") {
     chat.style.display = "flex";
-    chatButtonIcon.innerHTML = chatButtonClose;
+    chatButtonIcon.innerHTML = chatButtonCloseIcon;
     overlay.style.display = "block";
   } else {
     chat.style.display = "none";
@@ -73,19 +79,6 @@ chatButtonIcon.style.height = "100%";
 chatButtonIcon.style.zIndex = 999999999;
 chatButtonIcon.innerHTML = chatButtonLogo;
 chatButton.appendChild(chatButtonIcon);
-
-chatButton.addEventListener("click", () => {
-  if (chat.style.display === "none") {
-    chat.style.display = "flex";
-    chatButtonIcon.innerHTML = chatButtonClose;
-    overlay.style.display = "block"; // Show the overlay
-  } else {
-    chat.style.display = "none";
-    chatButtonIcon.innerHTML = chatButtonLogo;
-    overlay.style.display = "none"; // Hide the overlay
-  }
-  // adjustForSmallScreens();
-});
 
 // Blur
 const overlay = document.createElement("div");
