@@ -1,4 +1,4 @@
-const SIZE = 60; // size of the chat button in pixels
+const SIZE = 100; // size of the chat button in pixels
 const BTN_RAD = SIZE / 2; // radius of the chat button in pixels
 const BG_CHAT = "#49CACD"; // background color of the chat button
 const chatButtonLogo = `<svg fill="#FFFFFF" stroke-width="10" height="60px" width="700px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
