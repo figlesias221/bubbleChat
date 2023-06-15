@@ -143,6 +143,7 @@ chatCloseButton.addEventListener("click", () => {
   chat.style.display = "none";
   chatButton.style.display = "flex";
   overlay.style.display = "none";
+  chatButtonIcon.innerHTML = chatButtonLogo;
 });
 chat.appendChild(chatCloseButton);
 
